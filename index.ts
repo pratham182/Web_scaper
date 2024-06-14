@@ -1,6 +1,8 @@
 import axios from "axios";
 import qs from "qs";
 
+import cheerio from 'cheerio';
+
 
 const result=async(rollno:string,session:string,sem:string,examType:string)=>{
     let data = qs.stringify({
@@ -33,9 +35,90 @@ const result=async(rollno:string,session:string,sem:string,examType:string)=>{
       };
       
       const response=await axios.request(config)
-      console.log(response.data);
+      const parsedData=parseHtml(JSON.stringify(response.data));
+      if(parsedData){
+        return parsedData;
+      }
+
+
+      
       
 }
-// result("210010139002","DEC-2023","5th")
+
 
 //cherios,nodejs-html-parser
+
+
+// todo: post
+// rollno: 210010139002
+// session: DEC2023
+// sem: 5
+// examType: MAIN
+// getdmc: SEARCH
+
+
+//parse the html
+const parseHtml=(htmlContent:string)=>{
+  const $=cheerio.load(htmlContent);
+ 
+  //name 
+  let name: string = '';
+  const nameSelector = "body > table:nth-of-type(2) > tbody > tr:nth-child(3) > td:nth-child(2)";
+  const nameElement = $(nameSelector);
+   name = nameElement.text().trim() || 'N/A';
+
+
+   //rollno
+   let rollno:string='';
+   const rollnoSelector="body > table:nth-of-type(2) > tbody > tr:nth-child(2) > td:nth-child(2)";
+   const rollnoElement= $(rollnoSelector);
+  
+   rollno=rollnoElement.text().trim()||'N/A';
+   
+
+   //marks
+   let marks:string='';
+   const markselector="body > table:nth-of-type(3) > tbody > tr:nth-child(3) > td:nth-child(2)"
+   const marksElement=$(markselector);
+
+   marks=marksElement.text().trim()||'N/A';
+
+    if(marks=='N/A')
+      return null;
+   return{
+    name,rollno,marks
+   }
+  
+  
+ //later rafactored this code by making a function
+}
+
+
+const main=async()=>{
+  let iterate_rollno:number=210010130001
+while(iterate_rollno<=210010139018){
+  
+  const response=await result(iterate_rollno.toString(),"DEC2023","5","MAIN");
+  if(response){
+    console.log(response);
+  }
+  iterate_rollno++;
+  if(iterate_rollno==210010130073){
+    iterate_rollno=210010139001
+  }
+
+
+
+}
+
+}
+
+main();
+
+
+
+
+
+
+//send batch request
+//30 request
