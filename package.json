@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.15.1",
     "@types/qs": "^6.9.15",
     "axios": "^1.7.2",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.4.5",
+    "prisma": "^5.15.1",
     "qs": "^6.12.1"
   },
   "devDependencies": {

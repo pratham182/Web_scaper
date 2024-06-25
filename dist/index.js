@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.main = void 0;
+const create_student_1 = require("./src/database/create-student");
 const fetch_result_1 = require("./src/fetch-result");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -30,9 +31,10 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         if (iterate_rollno == 210010130073) {
             iterate_rollno = 210010139001;
         }
-    } while (response != null);
+    } while (iterate_rollno == 210010130001);
 });
 exports.main = main;
 (0, exports.main)();
 //send batch request
 //30 request
+(0, create_student_1.createStudent)();

@@ -1,3 +1,4 @@
+import { createStudent } from './src/database/create-student';
 import { fetch_result } from './src/fetch-result';
 
 import dotenv from 'dotenv'; 
@@ -32,12 +33,12 @@ export const main = async () => {
 
 
 
-  }while (response != null)
+  }while (iterate_rollno==210010130001)
 
  
   }
 
-main();
+
 
 
 
@@ -47,3 +48,6 @@ main();
 
 //send batch request
 //30 request
+
+
+createStudent();
