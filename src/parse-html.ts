@@ -89,8 +89,7 @@ marksDetails.pop();
     if (marks == 'N/A')
       return null;
     return {
-      name, rollno, marks,
-      marksDetails
+      name, rollno,marks
     }
   
   

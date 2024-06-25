@@ -36,8 +36,9 @@ export const fetch_result = async (rollno: string, session: string, sem: string,
     try {
       const response = await axios.request(config)
       const parsedData = parseHtml(JSON.stringify(response.data));
-      console.log(parsedData);
+      
       if (parsedData) {
+        console.log(parsedData)
         return parsedData;
       }
   

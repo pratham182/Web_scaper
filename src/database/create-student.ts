@@ -6,8 +6,13 @@ const prisma=new PrismaClient();
 export const createStudent=async()=>{
     await prisma.student.create({
         data:{
-            name:"pratham",
-            rollno:1009
+            name:"pRatjam",
+            rollno:1088298,
+            branch:{
+                connect:{
+                    id:1
+                }
+            }
         }
     })
 }

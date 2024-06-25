@@ -1,3 +1,4 @@
+import { createBranch } from './src/database/create-branch';
 import { createStudent } from './src/database/create-student';
 import { fetch_result } from './src/fetch-result';
 
@@ -17,28 +18,35 @@ export const main = async () => {
 
   
   let iterate_rollno: number = 210010130001;
-  let response=null;
+  let response;
+
+  let year:any=new Date().getFullYear();
+   year=year.toString();
   
-  do {  
+  while (iterate_rollno<=210010139020) {  
      response = await fetch_result(iterate_rollno.toString(), "DEC2023", "5", "MAIN");
     if (response) {
-      // console.log(overall_result);
+     
       overall_result.push(response);
       
     }
     iterate_rollno++;
-    if (iterate_rollno == 210010130073) {
+    if (iterate_rollno >=210010130200) {
       iterate_rollno = 210010139001
     }
 
+    
+
+    
 
 
-  }while (iterate_rollno==210010130001)
+
+  }
 
  
   }
 
-
+main();
 
 
 
@@ -50,4 +58,5 @@ export const main = async () => {
 //30 request
 
 
-createStudent();
+// createBranch();
+// createStudent();
