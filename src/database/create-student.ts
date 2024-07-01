@@ -3,17 +3,37 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma=new PrismaClient();
 
-export const createStudent=async()=>{
+export const createStudent=async(Student:any)=>{
+    
+    try{
+
+        const result = await prisma.student.findFirst({
+            where: {
+              rollno: Student.rollno,
+            }
+          });
+          if(!result){
     await prisma.student.create({
         data:{
-            name:"pRatjam",
-            rollno:1088298,
+            name:Student.name,
+            rollno:parseInt(Student.rollno),
             branch:{
                 connect:{
-                    id:1
+                    name:Student.branchName
                 }
             }
         }
     })
+}else{
+   
+
+    console.log("Already exists");
 }
+
+}
+    catch(err){
+        console.log(err);
+    }
+}
+
 

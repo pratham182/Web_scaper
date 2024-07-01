@@ -22,7 +22,7 @@ model branch {
 model Student {
   id         Int    @default(autoincrement())
   name       String
-  rollno     Int    @id @unique
+  rollno     BigInt    @id @unique
   branchName String
   branch     branch @relation(fields: [branchName], references: [name])
   marks      Mark[]
@@ -44,7 +44,7 @@ model Mark {
   marksObtained    Int
   gradePoint       Float
   internalObtained Int
-  studentId        Int
+  studentId        BigInt
   subjectId        String
 
   student Student @relation(fields: [studentId], references: [rollno])

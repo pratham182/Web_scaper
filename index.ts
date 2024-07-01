@@ -27,14 +27,18 @@ export const main = async () => {
      response = await fetch_result(iterate_rollno.toString(), "DEC2023", "5", "MAIN");
     if (response) {
      
-      overall_result.push(response);
-      
-    }
-    iterate_rollno++;
-    if (iterate_rollno >=210010130200) {
+      // overall_result.push(response);
+      createBranch(response.branchName);
+      createStudent(response);
+    }iterate_rollno++;
+    
+    
+    if (iterate_rollno ==210010130200) {
       iterate_rollno = 210010139001
-    }
+     
 
+    }
+    
     
 
     

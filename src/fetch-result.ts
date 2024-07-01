@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import qs from "qs";
-import { parseHtml } from "./parse-html";
+import {  parseHtml } from "./parse-html";
 
 export const fetch_result = async (rollno: string, session: string, sem: string, examType: string) => {
     let data = qs.stringify({
@@ -38,7 +38,6 @@ export const fetch_result = async (rollno: string, session: string, sem: string,
       const parsedData = parseHtml(JSON.stringify(response.data));
       
       if (parsedData) {
-        console.log(parsedData)
         return parsedData;
       }
   

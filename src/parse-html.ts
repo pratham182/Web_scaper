@@ -83,22 +83,31 @@ tbody.find('tr').each((index, ele) => {
 marksDetails.pop();
 // console.log('Marks Details:', marksDetails);
 
-     
-    
+  
+
+//fetch branch
+const branchName = $('table tbody tr').filter((i, el) => {
+  return $(el).text().includes('B.TECH.');
+}).text().trim();
+
+
 
     if (marks == 'N/A')
       return null;
     return {
-      name, rollno,marks
+      name, rollno,marks,
+      branchName,marksDetails
     }
   
   
     //later rafactored this code by making a function
   }
 
+  const parseSpecificField=(loadable:any,selector:any):string=>{
+    const element = loadable(selector); 
+    return element.text().trim() || 'N/A';
+  }
+    
 
-const parseSpecificField=(loadable:any,selector:any):string=>{
-  const element = loadable(selector); 
-  return element.text().trim() || 'N/A';
-}
-  
+
+
